@@ -20,4 +20,9 @@ contract MyToken is ERC20 {
         _burn(msg.sender, amount);
     }
     
+    function transfer(address reciever, uint256 amount) public override returns (bool) {
+        _transfer(msg.sender, reciever, amount);
+        require(balanceOf(msg.sender) >= amount, "Insufficient balance");
+        return true;
+    }
 }
