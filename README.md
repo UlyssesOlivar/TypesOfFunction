@@ -28,6 +28,11 @@ contract MyToken is ERC20 {
         _burn(msg.sender, amount);
     }
     
+    function transfer(address reciever, uint256 amount) public override returns (bool) {
+        _transfer(msg.sender, reciever, amount);
+        require(balanceOf(msg.sender) >= amount, "Insufficient balance");
+        return true;
+    }
 }
 
 Select the "Solidity Compiler" tab from the sidebar on the left to begin compiling the code. Click the "Compile Module3.sol" button after ensuring that the "Compiler" option is selected to "0.8.0" (or another compatible version).
